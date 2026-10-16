@@ -1,58 +1,364 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-    
-    <title>Mi plantilla</title>
+    <meta name="theme-color" content="#f5f0e8">
+    <meta name="description" content="Karol Chaparro — Diseñadora gráfica. Explora mi portafolio creativo.">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Karol Chaparro — Diseñadora gráfica</title>
+
+    <style>
+        /* ===== CONFIGURACIÓN GENERAL ===== */
+
+        :root {
+            --cream: #f5f0e8;
+            --black: #191916;
+            --gray: #77746d;
+            --line: #d9d2c7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--cream);
+            color: var(--black);
+            font-family: Arial, Helvetica, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ===== ESTRUCTURA ===== */
+
+        .page {
+            width: min(100% - 48px, 1100px);
+            min-height: 100vh;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== ENCABEZADO ===== */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--line);
+            animation: appear 0.8s ease both;
+        }
+
+        .brand {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .availability {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--gray);
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            background: var(--black);
+            border-radius: 50%;
+        }
+
+        /* ===== CONTENIDO PRINCIPAL ===== */
+
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 100px 0 110px;
+        }
+
+        .eyebrow {
+            margin-bottom: 28px;
+            color: var(--gray);
+            font-size: 12px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            animation: appear 0.8s 0.1s ease both;
+        }
+
+        h1 {
+            max-width: 850px;
+            font-size: clamp(58px, 11vw, 132px);
+            line-height: 0.91;
+            font-weight: 500;
+            letter-spacing: -0.085em;
+            animation: appear 0.8s 0.2s ease both;
+        }
+
+        h1 span {
+            display: block;
+            font-family: Georgia, "Times New Roman", serif;
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: -0.075em;
+        }
+
+        .description {
+            max-width: 360px;
+            margin-top: 35px;
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.8;
+            animation: appear 0.8s 0.3s ease both;
+        }
+
+        /* ===== BOTONES ===== */
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 42px;
+            animation: appear 0.8s 0.4s ease both;
+        }
+
+        .button {
+            min-height: 54px;
+            padding: 0 25px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            border: 1px solid var(--black);
+            border-radius: 2px;
+            background: transparent;
+            color: var(--black);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            transition:
+                background 0.25s ease,
+                color 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .button.primary {
+            background: var(--black);
+            color: var(--cream);
+        }
+
+        .button:hover {
+            background: var(--black);
+            color: var(--cream);
+            transform: translateY(-3px);
+        }
+
+        .button.primary:hover {
+            background: transparent;
+            color: var(--black);
+        }
+
+        .arrow {
+            font-size: 17px;
+            font-weight: 400;
+            transition: transform 0.25s ease;
+        }
+
+        .button:hover .arrow {
+            transform: translate(3px, -3px);
+        }
+
+        /* ===== PIE DE PÁGINA ===== */
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 22px 0;
+            border-top: 1px solid var(--line);
+            color: var(--gray);
+            font-size: 11px;
+            letter-spacing: 0.04em;
+            animation: appear 0.8s 0.5s ease both;
+        }
+
+        .footer span:last-child {
+            text-align: right;
+        }
+
+        /* ===== ANIMACIONES ===== */
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== ADAPTACIÓN A MÓVILES ===== */
+
+        @media (max-width: 600px) {
+            .page {
+                width: calc(100% - 36px);
+            }
+
+            .header {
+                padding: 24px 0;
+            }
+
+            .brand {
+                font-size: 11px;
+            }
+
+            .availability {
+                font-size: 9px;
+                gap: 6px;
+            }
+
+            .hero {
+                padding: 95px 0 85px;
+            }
+
+            .eyebrow {
+                margin-bottom: 24px;
+                font-size: 10px;
+            }
+
+            h1 {
+                font-size: clamp(55px, 15vw, 88px);
+            }
+
+            .description {
+                max-width: 310px;
+                margin-top: 28px;
+                font-size: 14px;
+            }
+
+            .buttons {
+                width: 100%;
+                flex-direction: column;
+                margin-top: 32px;
+            }
+
+            .button {
+                width: 100%;
+                min-height: 54px;
+                justify-content: space-between;
+            }
+
+            .footer {
+                align-items: flex-start;
+                font-size: 10px;
+                line-height: 1.6;
+            }
+        }
+
+        /* Respetar la preferencia de movimiento reducido */
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-    <div class="col-xs-12">
-            <div class="text-center" style="padding-top: 30px; padding-bottom: 30px;">
-                <img class="backdrop linktree">
-                <h2 style="color: #ffffff; padding-top: 20px;">Mi curso de Git y Github</h2>
+
+    <div class="page">
+
+        <header class="header">
+            <a class="brand" href="#" aria-label="Inicio">
+                KC® — Diseño
+            </a>
+
+            <div class="availability">
+                <span class="dot"></span>
+                <span>Espacio creativo</span>
             </div>
+        </header>
+
+        <main class="hero">
+
+            <p class="eyebrow">
+                Diseñadora gráfica · Colombia
+            </p>
+
+            <h1>
+                Karol
+                <span>Chaparro.</span>
+            </h1>
+
+            <p class="description">
+                Diseño ideas, construyo conceptos y doy vida
+                a universos visuales. Este es un pequeño espacio
+                para conocer mi trabajo y explorar mi mundo creativo.
+            </p>
+
+            <nav class="buttons" aria-label="Mis enlaces">
+
+                <a
+                    class="button primary"
+                    href="https://www.figma.com/proto/0WucG37eJ8IIzvr4V5tYNR/Portafolio_KarolChaparro_2025?node-id=1-3&starting-point-node-id=1%3A3"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Explorar portafolio
+                    <span class="arrow" aria-hidden="true">↗</span>
+                </a>
+
+                <a
+                    class="button"
+                    href="https://instagram.com/michxkrl?rpxt=Zjg4Zjh1cDgxMWt0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Instagram
+                    <span class="arrow" aria-hidden="true">↗</span>
+                </a>
+
+            </nav>
+
+        </main>
+
+        <footer class="footer">
+            <span>© 2026 Karol Chaparro</span>
+            <span>Go Big or Go Home</span>
+        </footer>
+
     </div>
-    </div>
 
-
-    <div class="container">
-    <div class="col-xs-12">
-            <div class="text-center">
-                <div style="padding-bottom: 30px;">
-                    <button onclick="location.href='https://platzi.com/cursos/docker-fundamentos/'" type="button" class="btn btn-outline-light shake" style="width: 80%; padding-top:10px; padding-bottom:10px; font-weight: 800;">Mi curso de Docker</button>
-                </div>
-                <div style="padding-bottom: 30px;">
-                    <button onclick="location.href='http://aminespinoza.com'" type="button" class="btn btn-outline-light" style="width: 80%; padding-top:10px; padding-bottom:10px; font-weight: 600;">Mi sitio web</button>
-                </div>
-                <div style="padding-bottom: 30px;">
-                    <button onclick="location.href='https://www.linkedin.com/in/aminespinoza/'" type="button" class="btn btn-outline-light" style="width: 80%; padding-top:10px; padding-bottom:10px; font-weight: 600;">Conecta en mi perfil de LinkedIn</button>
-                </div>
-                <div style="padding-bottom: 30px;">
-                    <button onclick="location.href='https://www.instagram.com/aminespinoza10/'" type="button" class="btn btn-outline-light" style="width: 80%; padding-top:10px; padding-bottom:10px; font-weight: 600;">Visitame en Instagram</button>
-                </div>
-                <div style="padding-bottom: 30px;">
-                    <button onclick="location.href='https://www.youtube.com/aminespinoza'" type="button" class="btn btn-outline-light" style="width: 80%; padding-top:10px; padding-bottom:10px; font-weight: 600;">Mira mi canal de Youtube</button>
-                </div>
-            </div>
-    </div>
-    </div>
-
-        <div class="text-center">
-            <a href="https://codepen.io/nightcl4w/pen/dEjreJ" style="color: #34312f;" target="_blank">Creado por OrderMerch</a>
-        </div>
-
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <!-- This pre-lander was created by Brandon Nilsson -->
-    <!-- You're welcome to edit, reproduce and change this template as long as original contributation stays present on the website at all times.  -->
 </body>
-
 </html>
+```
